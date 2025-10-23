@@ -4,10 +4,12 @@ from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
+    """Коннектор для отображения страницы home.html"""
     return render(request, 'home.html')
 
 
 def contacts(request):
+    """Коннектор для отображения страницы contacts.html и обработки POST запроса"""
     if request.method == 'POST':
         # Получение данных из формы
         name = request.POST.get('name')
