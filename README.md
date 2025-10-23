@@ -6,7 +6,7 @@
 
 
 1. Клонируйте репозиторий:
-   [ссылка](https://github.com/kostya261/Home_work-21_2/pull/1)
+   [ссылка](https://github.com/kostya261/Home-work-22/pull/1)
    
 2. Зависимости указанные в файле: *pyproject.toml*
 
