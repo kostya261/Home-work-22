@@ -8,26 +8,6 @@
 1. Клонируйте репозиторий:
    [ссылка](https://github.com/kostya261/Home-work-22/pull/1)
    
-2. Зависимости указанные в файле: *pyproject.toml*
-
-```
-[tool.poetry]
-name = "homework-22"
-version = "0.1.0"
-description = "Домашняя работа 22"
-authors = ["Konstantin Kosarew"]
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.13"
-django = "^5.2.7"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-```
 
 ## Использование:
 
