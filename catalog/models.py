@@ -1,9 +1,7 @@
 from django.db import models
-from django.template.defaultfilters import title
 
 
 # Create your models here.
-
 
 
 class Category(models.Model):
@@ -25,7 +23,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', verbose_name='категория')
     price = models.IntegerField()
     created_at = models.DateField(auto_now_add=True)
-    updated_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
     def __str__(self):
         return str(self.description)
@@ -33,5 +31,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
-        ordering = ['title',]
-
+        ordering = ['title', ]
