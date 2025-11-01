@@ -17,7 +17,7 @@ from pathlib import Path
 
 load_dotenv(override=True)
 
-#from django.conf.global_settings import STATICFILES_DIRS, SECRET_KEY
+# from django.conf.global_settings import STATICFILES_DIRS, SECRET_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
