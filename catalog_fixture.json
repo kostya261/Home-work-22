@@ -1,0 +1,117 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 14,
+    "fields": {
+        "title": "Процессоры",
+        "description": "Процессор различных фирм"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 15,
+    "fields": {
+        "title": "Мониторы",
+        "description": "Мониторы различных фирм"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 16,
+    "fields": {
+        "title": "Память",
+        "description": "Память различных фирм"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 12,
+    "fields": {
+        "title": "Intel Core i7",
+        "description": "Процессор фирмы Intel, 4 ядра, 8 потоков, частота процессора 3ГГц",
+        "image": "",
+        "category": 14,
+        "price": 25000,
+        "created_at": "2025-11-02",
+        "updated_at": "2025-11-02"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 13,
+    "fields": {
+        "title": "AMD Rayzen",
+        "description": "Процессор фирмы AMD, 4 ядра, 8 потоков, частота процессора 3.2ГГц",
+        "image": "",
+        "category": 14,
+        "price": 22000,
+        "created_at": "2025-11-02",
+        "updated_at": "2025-11-02"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 14,
+    "fields": {
+        "title": "Monitor Acer",
+        "description": "Монитор фирмы Acer",
+        "image": "",
+        "category": 15,
+        "price": 5000,
+        "created_at": "2025-11-02",
+        "updated_at": "2025-11-02"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 15,
+    "fields": {
+        "title": "Monitor Benq",
+        "description": "Монитор фирмы Benq",
+        "image": "",
+        "category": 15,
+        "price": 6000,
+        "created_at": "2025-11-02",
+        "updated_at": "2025-11-02"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 16,
+    "fields": {
+        "title": "Monitor Samsung",
+        "description": "Монитор фирмы Samsung",
+        "image": "",
+        "category": 15,
+        "price": 9000,
+        "created_at": "2025-11-02",
+        "updated_at": "2025-11-02"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 17,
+    "fields": {
+        "title": "Memory Kingston",
+        "description": "Память Kingston",
+        "image": "",
+        "category": 16,
+        "price": 800,
+        "created_at": "2025-11-02",
+        "updated_at": "2025-11-02"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 18,
+    "fields": {
+        "title": "Memory Hynix",
+        "description": "Память Hynix",
+        "image": "",
+        "category": 16,
+        "price": 900,
+        "created_at": "2025-11-02",
+        "updated_at": "2025-11-02"
+    }
+}
+]
