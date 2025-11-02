@@ -27,19 +27,24 @@
     <h2 class="text-center">Последние добавленные товары:</h2>
 
     {% if latest_products %}
-        <div class="row">
+        <div class="row text-center">
             {% for product in latest_products %}
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body ">
-                            <h5 class="card-title">{{ product.title }}</h5>
-                            <p class="card-text"><strong>Описание:</strong> {{ product.description }}</p>
-                            <p class="card-text"><strong>Цена:</strong> {{ product.price }} руб.</p>
-                            <p class="card-text"><strong>Категория:</strong> {{ product.category.title }}</p>
-                            <p class="card-text"><small class="text-muted">Добавлен: {{ product.created_at }}</small></p>
-                        </div>
+            <div class="col-3 mb-4">
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-normal">{{ product.title }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title">{{ product.price }} ₽</h1>
+                        <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                            <li><strong>Категория:</strong> {{ product.category.title }}</li>
+                            <li><strong>Добавлен:</strong> {{ product.created_at }}</li>
+                        </ul>
+                        <p class="card-text">{{ product.description|truncatewords:10 }}</p>
+                        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Подробнее</button>
                     </div>
                 </div>
+            </div>
             {% endfor %}
         </div>
     {% else %}
