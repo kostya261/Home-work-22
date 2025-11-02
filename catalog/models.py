@@ -5,6 +5,7 @@ from django.db import models
 
 
 class Category(models.Model):
+    """ Описание Категории товаров """
     title = models.CharField(max_length=100, verbose_name='наименование', unique=True)
     description = models.TextField(null=True, blank=True)
 
@@ -17,6 +18,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """ Описание продукта """
     title = models.CharField(max_length=100, verbose_name='наименование', unique=True)
     description = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to='photos/', verbose_name='Фотография')

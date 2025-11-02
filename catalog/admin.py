@@ -5,6 +5,7 @@ from .models import Product, Category
 '''admin.site.register(Product)
 admin.site.register(Category)'''
 
+""" Настраиваем админ-панель Django """
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
