@@ -27,6 +27,8 @@ class Product(models.Model):
     price = models.PositiveIntegerField()
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    views = models.PositiveIntegerField(default=0, verbose_name='Просмотры')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     def __str__(self):
         return self.description or ''
