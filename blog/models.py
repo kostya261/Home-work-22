@@ -18,6 +18,7 @@ class Topic(models.Model):
 
 
 class Article(models.Model):
+    """Структура статьи"""
     title = models.CharField(max_length=100)
     content = models.TextField()
     image = models.ImageField(upload_to='articles/', verbose_name='Фотография', blank=True, null=True)

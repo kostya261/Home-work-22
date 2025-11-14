@@ -11,6 +11,7 @@ from blog.models import Article, Topic
 
 
 class ArticleListView(ListView):
+    """Просмотр списка статей"""
     model = Article
     template_name = 'blog/blog_content.html'
     context_object_name = 'all_articles'
@@ -21,6 +22,7 @@ class ArticleListView(ListView):
 
 
 class ArticleDetailView(DetailView):
+    """Детальный просмотр статьи"""
     model = Article
     template_name = 'blog/article_detail.html'
     context_object_name = 'article'
@@ -36,10 +38,8 @@ class ArticleDetailView(DetailView):
         return obj
 
 
-
-
-
 class ArticleCreateView(CreateView):
+    """Создаем статью"""
     model = Article
     form_class = ArticleForm
     template_name = 'blog/add_article.html'
@@ -47,16 +47,16 @@ class ArticleCreateView(CreateView):
 
 
 class ArticleUpdateView(UpdateView):
+    """Редактируем статью"""
     model = Article
     form_class = ArticleForm
     template_name = 'blog/edit_article.html'
 
     def get_success_url(self):
-
         return reverse('blog:article_detail', kwargs={'article_id': self.object.id})
 
 
-#Может быть потом
+# Может быть потом
 """class ArticlesByTopycView(ListView):
     template_name = 'blog/articles_by_topic.html'
     context_object_name = 'articles'
