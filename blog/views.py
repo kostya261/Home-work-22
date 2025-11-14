@@ -56,7 +56,8 @@ class ArticleUpdateView(UpdateView):
         return reverse('blog:article_detail', kwargs={'article_id': self.object.id})
 
 
-class ArticlesByTopycView(ListView):
+#Может быть потом
+"""class ArticlesByTopycView(ListView):
     template_name = 'blog/articles_by_topic.html'
     context_object_name = 'articles'
 
@@ -67,4 +68,4 @@ class ArticlesByTopycView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['topic'] = self.topic
-        return context
+        return context"""

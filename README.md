@@ -1,14 +1,12 @@
-# 🐍 Домашняя работа 23
+# 🐍 Домашняя работа 25
 
 Домашняя работа по основам Django
-Дополнение к домашнему заданию 24
+Дополнение к домашнему заданию 25
 
 ## 📦 Установка и настройка
 
-
 1. Клонируйте репозиторий:
    [ссылка](https://github.com/kostya261/Home-work-22/pull/2)
-   
 
 ## Использование:
 
@@ -17,38 +15,51 @@
 Перейдите по ссылке в консоли или введите в строке браузера: 127.0.0.1:8000
 
 ## Панель администратора:
+
 Откройте проект например в PyCharm, запустите локальный сервер командой: python manage.py runserver
 
 Перейдите по ссылке в консоли или введите в строке браузера: 127.0.0.1:8000/admin
 
 ## Что добавлено в сравнении с предыдущим домашним заданием
-Добавлены шаблоны страниц footer.html, block_content.html, add_product.html, menu.html, product_detail.html
-добавлены коннекторы detail_product, add_product
-добавлена модель AddProduct
+
+Добавлено приложение blog
+Добавлены шаблоны страниц article_detail.html, edit_article.html, add_article.html, blog_content.html
+Добавлена дополнительная кнопка в menu.html
+Изменена структура каталогов в связи с добавлением блога
+Добавлены модели Topic и Article, а также ArticleForm
 
 ## Структура проекта
 
 HomeWork_21_2/
-├── catalog/                                # непосредственно приложение
-│   ├── management/                         #
-│   │    └── commands/                      #
-│   │          └──add_product.py            #
-│   ├── migrations/                         #
-│   └── templates/                          #
-│        └──catalog/                        #
-│              ├──footer.html               # нижняя часть страницы
-│              ├──home.html                 # основной шаблон
-│              ├──block_content.html        # основная страница с отображением всех продуктов
-│              ├──add_product.html          # основная тестовая страница
-│              ├──menu.html                 # страница меню
-│              ├──product_detail.html       # страница детальной информации о продукте
-│              └──contacts.html             # страница контактов и для отправки post
-│   
-├── config/                      # конфигурационные файлы django│    
-├── media/                       # Медиа файлы (снимки товаров)
-├── css/                         # файлы bootstrap
-├── js/                          # и его JavaScript`ы
-└── README.md                    # Этот файл
+├── blog/                         # непосредственно приложение
+│ ├── management/                 #
+│ │ └── commands/                 #
+│ │      └──add_article.py        #
+│ ├── migrations/                 #
+│ └── templates/                  #
+├── catalog/                      # непосредственно приложение
+│ ├── management/                 #
+│ │   └── commands/               #
+│ │      └──add_product.py        #
+│ ├── migrations/                 #
+│ └── templates/                  #
+│     └──catalog/                 #
+│        ├──home.html             # основной шаблон
+│        ├──block_content.html    # основная страница с отображением всех продуктов
+│        ├──add_product.html      # основная тестовая страница
+│        ├──menu.html             # страница меню
+│        ├──product_detail.html   # страница детальной информации о продукте
+│        └──contacts.html         # страница контактов и для отправки post
+├──templates/                     #
+│   │ └──includes/                #
+│   │    ├──footer.html           # нижняя часть страницы
+│   │    └──menu.html             # страница меню
+│   └──home.html                  # основной шаблон
+├── config/ # конфигурационные файлы django│    
+├── media/ # Медиа файлы (снимки товаров)
+├── css/ # файлы bootstrap
+├── js/ # и его JavaScript`ы
+└── README.md # Этот файл
 
 👨‍💻 Автор
 Константин
@@ -57,7 +68,7 @@ GitHub: https://github.com/kostya261
 
 Email: kos261@yandex.ru
 
-
 ## Лицензия:
+
 📄 Лицензия
 Этот проект является курсовой работой и распространяется по лицензии MIT.В
