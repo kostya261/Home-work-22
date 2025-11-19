@@ -19,15 +19,10 @@ from django.urls import path
 from catalog import views
 from catalog.apps import CatalogConfig
 
-
 app_name = CatalogConfig.name
 
 # Маршруты
 urlpatterns = [
-    #path('', home, name='home'),
-    #path('product_detail/<int:product_id>/', detail_product, name='detail_product'),
-    # path('contacts/', contacts, name='contacts'),
-    # path('add_product/', add_product, name='add_product'),
     path('', views.Home.as_view(), name='home'),
     path('product_detail/<int:product_id>/', views.ProductDetailView.as_view(), name='detail_product'),
     path('contacts/', views.ContactsView.as_view(), name='contacts'),

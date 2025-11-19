@@ -8,7 +8,7 @@ class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ['title', 'content', 'topic', 'image']
+        fields = ['title', 'content', 'topic', 'image', 'is_published']
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название статьи'}),
