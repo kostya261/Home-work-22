@@ -125,6 +125,8 @@ class AddProduct(forms.ModelForm):
             ext = os.path.splitext(image.name)[1].lower()
             if ext not in ['.jpg', '.jpeg', '.png']:
                 raise forms.ValidationError('только JPEG или PNG формат файлов!')
+        # А эту строчку я забыл добавить, из-за чего в этой домашке после валидации картинка не добавлялась!
+        return image
 
     class Meta:
         model = Product

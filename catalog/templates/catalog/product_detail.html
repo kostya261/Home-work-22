@@ -28,6 +28,8 @@
                     </ul>
                     <p class="card-text">{{ product.description|linebreaks }}</p>
                     <p>Просмотров: {{ product.views }}</p>
+                    <a href="{% url 'catalog:product_edit' product.id %}"
+                       class="btn btn-lg btn-block btn-outline-primary">✏️ Редактирование</a>
                     <button onclick="window.history.back()" class="btn btn-secondary">
                         ← Назад
                     </button>
