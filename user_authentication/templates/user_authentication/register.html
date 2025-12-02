@@ -1,0 +1,303 @@
+{% extends 'home.html' %}
+
+{% block title %}Регистрация нового пользователя{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Карточка регистрации -->
+            <div class="card shadow-lg border-0">
+                <!-- Заголовок -->
+                <div class="card-header bg-gradient-primary text-white text-center py-4">
+                    <h2 class="mb-0">
+                        <i class="bi bi-person-plus me-2"></i>Регистрация
+                    </h2>
+                    <p class="mb-0 mt-2 opacity-75">Создайте новый аккаунт</p>
+                </div>
+
+                <!-- Тело формы -->
+                <div class="card-body p-4 p-md-5">
+                    <form method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+
+                        <!-- Сообщения об ошибках -->
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            Пожалуйста, исправьте ошибки ниже.
+                        </div>
+                        {% endif %}
+
+                        <!-- Поля формы -->
+                        <div class="row">
+                            <!-- Email -->
+                            <div class="col-12 mb-3">
+                                <label for="{{ form.email.id_for_label }}" class="form-label">
+                                    <strong>Email адрес *</strong>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-envelope"></i>
+                                    </span>
+                                    {{ form.email }}
+                                </div>
+                                {% if form.email.help_text %}
+                                <div class="form-text">{{ form.email.help_text }}</div>
+                                {% endif %}
+                                {% if form.email.errors %}
+                                <div class="text-danger small mt-1">{{ form.email.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Пароль 1 -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.password1.id_for_label }}" class="form-label">
+                                    <strong>Пароль *</strong>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock"></i>
+                                    </span>
+                                    {{ form.password1 }}
+                                </div>
+                                {% if form.password1.help_text %}
+                                <div class="form-text">{{ form.password1.help_text }}</div>
+                                {% endif %}
+                                {% if form.password1.errors %}
+                                <div class="text-danger small mt-1">{{ form.password1.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Пароль 2 -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.password2.id_for_label }}" class="form-label">
+                                    <strong>Подтверждение пароля *</strong>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock-fill"></i>
+                                    </span>
+                                    {{ form.password2 }}
+                                </div>
+                                {% if form.password2.help_text %}
+                                <div class="form-text">{{ form.password2.help_text }}</div>
+                                {% endif %}
+                                {% if form.password2.errors %}
+                                <div class="text-danger small mt-1">{{ form.password2.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Имя -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.first_name.id_for_label }}" class="form-label">
+                                    <strong>Имя</strong>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-person"></i>
+                                    </span>
+                                    {{ form.first_name }}
+                                </div>
+                                {% if form.first_name.errors %}
+                                <div class="text-danger small mt-1">{{ form.first_name.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Фамилия -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.last_name.id_for_label }}" class="form-label">
+                                    <strong>Фамилия</strong>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-person-badge"></i>
+                                    </span>
+                                    {{ form.last_name }}
+                                </div>
+                                {% if form.last_name.errors %}
+                                <div class="text-danger small mt-1">{{ form.last_name.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Телефон -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.phone_number.id_for_label }}" class="form-label">
+                                    <strong>Телефон</strong>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-telephone"></i>
+                                    </span>
+                                    {{ form.phone_number }}
+                                </div>
+                                {% if form.phone_number.errors %}
+                                <div class="text-danger small mt-1">{{ form.phone_number.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Страна -->
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.country.id_for_label }}" class="form-label">
+                                    <strong>Страна</strong>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-globe"></i>
+                                    </span>
+                                    {{ form.country }}
+                                </div>
+                                {% if form.country.errors %}
+                                <div class="text-danger small mt-1">{{ form.country.errors }}</div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Аватар -->
+                            <div class="col-12 mb-4">
+                                <label for="{{ form.avatar.id_for_label }}" class="form-label">
+                                    <strong>Аватар (необязательно)</strong>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-image"></i>
+                                    </span>
+                                    {{ form.avatar }}
+                                </div>
+                                {% if form.avatar.help_text %}
+                                <div class="form-text">{{ form.avatar.help_text }}</div>
+                                {% endif %}
+                                {% if form.avatar.errors %}
+                                <div class="text-danger small mt-1">{{ form.avatar.errors }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Согласие с правилами -->
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                Я согласен с <a href="#" class="text-decoration-none">правилами использования</a> и
+                                <a href="#" class="text-decoration-none">политикой конфиденциальности</a>
+                            </label>
+                        </div>
+
+                        <!-- Кнопка отправки -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-person-check me-2"></i>Зарегистрироваться
+                            </button>
+                        </div>
+
+                        <!-- Ссылка на вход -->
+                        <div class="text-center mt-4">
+                            <p class="mb-0">
+                                Уже есть аккаунт?
+                                <a href="{% url 'users:login' %}" class="text-decoration-none fw-bold">
+                                    Войдите здесь
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Стили для формы -->
+<style>
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%) !important;
+    }
+
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        border-bottom: none;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    .input-group-text {
+        background-color: #f8f9fa;
+        border-right: none;
+    }
+
+    .input-group .form-control {
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .input-group .form-control:focus {
+        border-left: none;
+        box-shadow: none;
+    }
+
+    .input-group:focus-within .input-group-text {
+        border-color: #0d6efd;
+        background-color: #e7f1ff;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+        border: none;
+        padding: 12px;
+        font-weight: 500;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+    }
+
+    .form-label strong {
+        color: #495057;
+    }
+</style>
+
+<!-- Скрипт для добавления Bootstrap классов к полям -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Добавляем классы ко всем полям ввода
+    const inputs = document.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        if (!input.classList.contains('btn') && input.type !== 'checkbox') {
+            input.classList.add('form-control');
+        }
+    });
+
+    // Особое оформление для чекбокса
+    const checkbox = document.querySelector('input[type="checkbox"]');
+    if (checkbox) {
+        checkbox.classList.add('form-check-input');
+    }
+
+    // Показываем/скрываем пароль (дополнительная функция)
+    const passwordInputs = document.querySelectorAll('input[type="password"]');
+    passwordInputs.forEach(input => {
+        const parent = input.parentElement;
+        const toggleBtn = document.createElement('button');
+        toggleBtn.type = 'button';
+        toggleBtn.className = 'btn btn-outline-secondary';
+        toggleBtn.innerHTML = '<i class="bi bi-eye"></i>';
+        toggleBtn.style.borderLeft = 'none';
+
+        toggleBtn.addEventListener('click', function() {
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>';
+        });
+
+        parent.classList.add('input-group');
+        parent.appendChild(toggleBtn);
+    });
+});
+</script>
+{% endblock %}
