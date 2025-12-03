@@ -137,7 +137,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # _________Мои прибамбасы ______________
 AUTH_USER_MODEL = 'user_authentication.User'
 
-# LOGIN_URL = ''
+LOGIN_URL = 'user_authentication:login'
 LOGIN_REDIRECT_URL = 'catalog:home'  # куда перенаправлять после входа
 LOGOUT_REDIRECT_URL = 'catalog:home'  # куда перенаправлять после выхода
 

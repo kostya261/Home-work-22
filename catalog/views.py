@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
@@ -48,7 +49,7 @@ class ContactsView(TemplateView):
         return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
 
 
-class AddProductView(CreateView):
+class AddProductView(LoginRequiredMixin, CreateView):
     """ Добавляем продукт """
     model = Product
     form_class = AddProduct
@@ -56,7 +57,7 @@ class AddProductView(CreateView):
     success_url = reverse_lazy('catalog:home')
 
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     """ Редактируем продукт """
     model = Product
     form_class = AddProduct
@@ -67,7 +68,7 @@ class ProductUpdateView(UpdateView):
         return reverse('catalog:detail_product', kwargs={'product_id': self.object.id})
 
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     """ Удаление продукта """
     model = Product
     template_name = 'catalog/product_confirm_delete.html'
