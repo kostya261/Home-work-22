@@ -1,9 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
 
 from .forms import ProductForm
+# from .forms import ProductForm, ProductModeratorForm
 from .models import Product, AddProduct
 
 
@@ -56,6 +58,20 @@ class AddProductView(LoginRequiredMixin, CreateView):
     template_name = 'catalog/add_product.html'
     success_url = reverse_lazy('catalog:home')
 
+    def form_valid(self, form):
+        """Автоматически устанавливаем текущего пользователя как владельца"""
+        user = self.request.user
+
+        # Публикуем, только если пользователь модератор/админ
+        if user.has_perm("catalog.can_add_product"):
+            form.instance.is_published = True
+        else:
+            form.instance.is_published = False
+
+        form.instance.owner = user
+
+        return super().form_valid(form)
+
 
 class ProductUpdateView(LoginRequiredMixin, UpdateView):
     """ Редактируем продукт """
@@ -67,8 +83,15 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('catalog:detail_product', kwargs={'product_id': self.object.id})
 
+    def get_form_class(self):
+        user = self.request.user
+        if user == self.object.owner:
+            return ProductForm
+        if user.has_perm("product.can_unpublish_product") and user.has_perm("product.can_delete_product"):
+            return ProductForm
+        raise PermissionDenied
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    '''class ProductDeleteView(LoginRequiredMixin, DeleteView):
     """ Удаление продукта """
     model = Product
     template_name = 'catalog/product_confirm_delete.html'
@@ -78,4 +101,44 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['product'] = self.get_object()
-        return context
+        return context'''
+
+    """    def  get_form_class(self):
+        user = self.request.user
+        if user == self.object.owner:
+            return ProductForm
+        if user.has_perm("product.can_unpublish_product") and user.has_perm("product.can_delete_product"):
+            return ProductModeratorForm
+        raise PermissionDenied"""
+
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    model = Product
+    template_name = 'catalog/product_confirm_delete.html'
+    success_url = reverse_lazy('catalog:home')
+    pk_url_kwarg = 'product_id'
+
+    def dispatch(self, request, *args, **kwargs):
+        # 1. Получаем продукт
+        product = self.get_object()
+
+        # 2. Проверяем по ПРОСТОЙ логике
+        user = request.user
+
+        # 3. Три условия через ИЛИ
+        is_owner = product.owner == user
+        is_superuser = user.is_superuser
+        is_in_moderator_group = user.groups.filter(name='Moderators').exists()
+        is_in_admin_group = user.groups.filter(name='Administrators').exists()
+
+        can_delete = is_owner or is_superuser or is_in_moderator_group or is_in_admin_group
+
+        # 4. Если нельзя - возвращаем ошибку
+        if not can_delete:
+            # from django.contrib import messages
+            # messages.error(request, 'Нельзя удалить!')
+            from django.shortcuts import redirect
+            return redirect('catalog:home')  # , product_id=product.id)
+
+        # 5. Если можно - пускаем дальше
+        return super().dispatch(request, *args, **kwargs)

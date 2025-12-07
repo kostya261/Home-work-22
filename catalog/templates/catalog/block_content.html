@@ -32,10 +32,14 @@
                 <a href="{% url 'catalog:detail_product' product.id %}"
                    class="btn btn-lg btn-block btn-outline-primary">Подробнее</a>
                 {% if user.is_authenticated %}
+                {% if user == product.owner or perms.catalog.can_edit_product or user.is_superuser %}
                 <a href="{% url 'catalog:product_edit' product.id %}"
                    class="btn btn-lg btn-block btn-outline-primary">✏️  Редактирование</a>
+                {% endif %}
+                {% if user == product.owner or perms.catalog.can_delete_product or user.is_superuser %}
                 <a href="{% url 'catalog:product_delete' product.id %}"
                    class="btn btn-lg btn-block btn-outline-primary">🗑️ Удаление</a>
+                {% endif %}
                 {% endif %}
 
             </div>

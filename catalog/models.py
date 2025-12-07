@@ -4,6 +4,14 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django import forms
 
+from config import settings
+
+
+#-возможно удалю
+#from config import settings
+
+
+
 
 # Create your models here.
 
@@ -49,6 +57,16 @@ class Product(models.Model):
         validators=[validate_image_size, validate_image_extension]
     )
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', verbose_name='категория')
+
+    # Владелец!
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='owned_products',
+        verbose_name='владелец',
+        null=True,
+        blank=True
+    )
     price = models.PositiveIntegerField()
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
@@ -62,6 +80,14 @@ class Product(models.Model):
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
         ordering = ['title', ]
+        permissions = [
+            ("can_edit_product", "Can edit product"),
+            ("can_unpublish_product", "Can unpublish _product"),
+            ("can_description_product", "Can description product"),
+            ("can_add_product", "Can add product"),
+            ("can_view_product", "Can view product"),
+            ("can_delete_product", "Can delete product"),
+        ]
 
 
 class AddProduct(forms.ModelForm):
