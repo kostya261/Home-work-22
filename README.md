@@ -1,33 +1,12 @@
-# 🐍 Домашняя работа 22
+# 🐍 Домашняя работа 28
 
 Домашняя работа по основам Django
+Дополнение к домашнему заданию 28
 
 ## 📦 Установка и настройка
 
-
 1. Клонируйте репозиторий:
-   [ссылка](https://github.com/kostya261/Home-work-22/pull/3)
-   
-2. Зависимости указанные в файле: *pyproject.toml*
-
-```
-[tool.poetry]
-name = "homework-22"
-version = "0.1.0"
-description = "Домашняя работа 22"
-authors = ["Konstantin Kosarew"]
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.13"
-django = "^5.2.7"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-```
+   [ссылка](https://github.com/kostya261/Home-work-22/pull/7)
 
 ## Использование:
 
@@ -35,17 +14,65 @@ build-backend = "poetry.core.masonry.api"
 
 Перейдите по ссылке в консоли или введите в строке браузера: 127.0.0.1:8000
 
+## Панель администратора:
+
+Откройте проект например в PyCharm, запустите локальный сервер командой: python manage.py runserver
+
+Перейдите по ссылке в консоли или введите в строке браузера: 127.0.0.1:8000/admin
+
+## Что добавлено в сравнении с предыдущим домашним заданием
+
+В базу добавлены группы Administrators и Moderators
+Настроены права доступа.
+Товар и статью в блоге могут удалять только автор, Модератор и Администратор.
+Посторонний пользователь или не автор статьи или продукта не смогут его удалить.
+Так же Навигационные клавиши доступны согласно правам пользователей.
+
 
 ## Структура проекта
 
 HomeWork_21_2/
-├── catalog/                # непосредственно приложение
-│   ├── home.html           # основная тестовая страница
-│   └── contacts.html       # страница контактов и для отправки post 
-├── config/                 # конфигурационные файлы django
-├── css/                    # файлы bootstrap
-├── js/                     # и его JavaScript`ы
-└── README.md               # Этот файл
+├── blog/                         # непосредственно приложение
+│ ├── management/                 #
+│ │ └── commands/                 #
+│ │      └──add_article.py        #
+│ ├── migrations/                 #
+│ └── templates/                  #
+├── catalog/                      # непосредственно приложение
+│ ├── management/                 #
+│ │   └── commands/               #
+│ │      └──add_product.py        #
+│ ├── migrations/                 #
+│ └── templates/                  #
+│     └──catalog/                 #
+│        ├──home.html             # основной шаблон
+│        ├──block_content.html    # основная страница с отображением всех продуктов
+│        ├──add_product.html      # основная тестовая страница
+│        ├──menu.html             # страница меню
+│        ├──product_detail.html   # страница детальной информации о продукте
+│        └──contacts.html         # страница контактов и для отправки post
+├── user_authentication/
+│     └── templates/user_authentication/
+│     ├── register.html # Форма регистрации
+│     ├── profile.html # Просмотр профиля
+│     └── edit_profile.html # Редактирование профиля
+├── models.py # Кастомная модель User
+├── forms.py # Формы: CustomUserCreationForm, CustomUserChangeForm, UserProfileForm
+├── views.py # Представления (RegisterView, CustomLoginView, profile, edit_profile)
+├── urls.py # Маршруты с app_name='users'
+├── admin.py # Кастомная админка для User
+│ 
+│ 
+├──templates/                     #
+│   │ └──includes/                #
+│   │    ├──footer.html           # нижняя часть страницы
+│   │    └──menu.html             # страница меню
+│   └──home.html                  # основной шаблон
+├── config/ # конфигурационные файлы django│    
+├── media/ # Медиа файлы (снимки товаров)
+├── css/ # файлы bootstrap
+├── js/ # и его JavaScript`ы
+└── README.md # Этот файл
 
 👨‍💻 Автор
 Константин
@@ -54,7 +81,7 @@ GitHub: https://github.com/kostya261
 
 Email: kos261@yandex.ru
 
-
 ## Лицензия:
+
 📄 Лицензия
 Этот проект является курсовой работой и распространяется по лицензии MIT.В
