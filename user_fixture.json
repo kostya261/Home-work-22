@@ -1,0 +1,62 @@
+[
+{
+    "model": "user_authentication.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$gNVUmYiDe36GdMMgEZ0ahw$eFjwvWDgv3oYx90M3ez6EPDDMm5+Wn1FLfswlwDbYXY=",
+        "last_login": "2025-12-02T21:38:11.123Z",
+        "is_superuser": true,
+        "first_name": "Константин",
+        "last_name": "Косарев",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-11-27T20:04:25Z",
+        "email": "money261@yandex.ru",
+        "avatar": "users/avatars/tenor.gif",
+        "phone_number": null,
+        "country": "Россия",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user_authentication.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$HtGVpqUlO3X867cwMEw9S3$zCZM8mOqOlC9/hoJextlTgRy3mk5Clp6U8AFphVlZoE=",
+        "last_login": "2025-12-02T20:58:43.292Z",
+        "is_superuser": false,
+        "first_name": "Константин",
+        "last_name": "Косарев",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-12-02T20:22:46.249Z",
+        "email": "kos261@mail.ru",
+        "avatar": "users/avatars/timon-eat.gif",
+        "phone_number": "+79272872582",
+        "country": "Россия",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "user_authentication.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$1000000$ung84JQpCu6H5NUZyJW5m7$XkWEhadxbMWUt7MYFs3NQVineWvyP4mxLNmBIrWwRUs=",
+        "last_login": null,
+        "is_superuser": false,
+        "first_name": "Константин",
+        "last_name": "Косарев",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-12-02T21:47:29.818Z",
+        "email": "kos261@rambler.ru",
+        "avatar": "",
+        "phone_number": "+79272872582",
+        "country": "Россия",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

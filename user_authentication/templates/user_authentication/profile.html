@@ -1,0 +1,171 @@
+{% extends 'home.html' %}
+
+{% block title %}Мой профиль{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <!-- Карточка профиля -->
+            <div class="card shadow-lg border-0">
+                <!-- Заголовок карточки -->
+                <div class="card-header bg-gradient-primary text-white py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 class="mb-0">
+                            <i class="bi bi-person-badge me-2"></i>Мой профиль
+                        </h3>
+                        <span class="badge bg-light text-primary">
+                            <i class="bi bi-check-circle me-1"></i>Активен
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Тело карточки -->
+                <div class="card-body p-4">
+                    <!-- Аватар и основная информация -->
+                    <div class="text-center mb-4">
+                        {% if user.avatar %}
+                        <img src="{{ user.avatar.url }}"
+                             alt="Аватар пользователя"
+                             class="rounded-circle border border-4 border-primary shadow"
+                             width="150"
+                             height="150"
+                             style="object-fit: cover;">
+                        {% else %}
+                        <div class="rounded-circle border border-4 border-light bg-gradient-light d-inline-flex align-items-center justify-content-center shadow"
+                             style="width: 150px; height: 150px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+                            <i class="bi bi-person-circle" style="font-size: 80px; color: #6c757d;"></i>
+                        </div>
+                        {% endif %}
+
+                        <h4 class="mt-3 mb-1">
+                            {{ user.first_name|default:"Пользователь" }} {{ user.last_name|default:"" }}
+                        </h4>
+                        <p class="text-muted mb-0">{{ user.email }}</p>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Детали профиля -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="info-item mb-3">
+                                <h6 class="text-uppercase text-muted small mb-1">
+                                    <i class="bi bi-envelope me-1"></i>Email
+                                </h6>
+                                <p class="mb-0">{{ user.email }}</p>
+                            </div>
+
+                            <div class="info-item mb-3">
+                                <h6 class="text-uppercase text-muted small mb-1">
+                                    <i class="bi bi-telephone me-1"></i>Телефон
+                                </h6>
+                                <p class="mb-0">{{ user.phone_number|default:"Не указан" }}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="info-item mb-3">
+                                <h6 class="text-uppercase text-muted small mb-1">
+                                    <i class="bi bi-person me-1"></i>Имя
+                                </h6>
+                                <p class="mb-0">{{ user.first_name|default:"Не указано" }}</p>
+                            </div>
+                            <div class="info-item mb-3">
+                                <h6 class="text-uppercase text-muted small mb-1">
+                                    <i class="bi bi-person-lines-fill me-1"></i>Фамилия
+                                </h6>
+                                <p class="mb-0">{{ user.last_name|default:"Не указана" }}</p>
+                            </div>
+
+                            <div class="info-item mb-3">
+                                <h6 class="text-uppercase text-muted small mb-1">
+                                    <i class="bi bi-flag me-1"></i>Страна
+                                </h6>
+                                <p class="mb-0">{{ user.country|default:"Не указана" }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Дополнительная информация -->
+
+
+                    <!-- Статистика (можно добавить реальные данные) -->
+                    <div class="mt-4 p-3 bg-light rounded">
+                        <h6 class="text-uppercase text-muted small mb-2">
+                            <i class="bi bi-graph-up me-1"></i>Активность
+                        </h6>
+                        <div class="row text-center">
+                            <div class="col">
+                                <h4 class="mb-0 text-primary">0</h4>
+                                <small class="text-muted">Статей</small>
+                            </div>
+                            <div class="col">
+                                <h4 class="mb-0 text-success">0</h4>
+                                <small class="text-muted">Товаров</small>
+                            </div>
+                            <div class="col">
+                                <h4 class="mb-0 text-info">1</h4>
+                                <small class="text-muted">Профиль</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Футер карточки с кнопками -->
+                <div class="card-footer bg-transparent border-top-0 py-3">
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'catalog:home' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-house-door me-1"></i>На главную
+                        </a>
+
+                        <div>
+                            <a href="{% url 'users:edit_profile' %}" class="btn btn-primary me-2">
+                                <i class="bi bi-pencil-square me-1"></i>Редактировать
+                            </a>
+                            <a href="{% url 'users:logout' %}" class="btn btn-outline-danger">
+                                <i class="bi bi-box-arrow-right me-1"></i>Выйти
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Дополнительные стили -->
+<style>
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%) !important;
+    }
+
+    .bg-gradient-light {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    }
+
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .info-item {
+        padding: 10px;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+    }
+
+    .info-item:hover {
+        background-color: rgba(0, 0, 0, 0.02);
+    }
+
+    .border-primary {
+        border-color: #0d6efd !important;
+    }
+</style>
+{% endblock %}
