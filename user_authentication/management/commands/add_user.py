@@ -14,4 +14,5 @@ class Command(BaseCommand):
 
         # Заменил на загрузку данных из фикстуры
         call_command('loaddata', 'user_fixture.json')
+        call_command('loaddata', 'groups.json')
         self.stdout.write(self.style.SUCCESS('Successfully loaded data from fixture'))

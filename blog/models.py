@@ -1,5 +1,7 @@
 from django.db import models
 
+from config import settings
+
 
 # Create your models here.
 
@@ -28,6 +30,15 @@ class Article(models.Model):
     views = models.PositiveIntegerField(default=0, verbose_name='просмотры')
     is_published = models.BooleanField(default=True, verbose_name='опубликовано')
 
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='owned_article',
+        verbose_name='владелец',
+        null=True,
+        blank=True
+    )
+
     def __str__(self):
         return self.title
 
@@ -35,3 +46,11 @@ class Article(models.Model):
         verbose_name = 'статья'
         verbose_name_plural = 'статьи'
         ordering = ['-created_at', 'title', ]
+        permissions = [
+            ("can_edit_article", "Can edit article"),
+            ("can_unpublish_article", "Can unpublish_article"),
+            ("can_description_article", "Can description article"),
+            ("can_add_article", "Can add article"),
+            ("can_view_article", "Can view article"),
+            ("can_delete_article", "Can delete article"),
+        ]
