@@ -9,6 +9,33 @@
         <!--{% endif %}-->
         {% endif %}
 
+        <!-- Выпадающий список категорий -->
+        <div class="dropdown d-inline-block me-2">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                Категории
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                <li><a class="dropdown-item" href="{% url 'catalog:home' %}">Все товары</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                {% for category in all_categories %}
+                <li>
+                    <a class="dropdown-item" href="{% url 'catalog:products_by_category' category.id %}">
+                        {{ category.title }}
+                        <span class="badge bg-primary rounded-pill float-end">
+                            {{ category.products.count }}
+                        </span>
+                    </a>
+                </li>
+                {% empty %}
+                <li><span class="dropdown-item text-muted">Нет категорий</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+
         <a class="p-2 btn btn-outline-primary" href="/blog/blog/">Блог</a>
 
         {% if request.resolver_match.app_name == 'blog' %}
