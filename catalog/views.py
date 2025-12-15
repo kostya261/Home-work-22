@@ -1,12 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, TemplateView, UpdateView, DeleteView
 
 from .forms import ProductForm
-# from .forms import ProductForm, ProductModeratorForm
-from .models import Product, AddProduct
+from .models import Product, AddProduct, Category
+from .services import get_product_from_cache, get_products_by_category_id, get_all_categories_from_cache
 
 
 # Create your views here.
@@ -20,7 +21,14 @@ class Home(ListView):
     paginate_by = 20
 
     def get_queryset(self):
-        return Product.objects.filter(is_published=True)
+        return get_product_from_cache()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Добавляем все категории в контекст главной страницы
+        from .services import get_all_categories_from_cache
+        context['all_categories'] = get_all_categories_from_cache()
+        return context
 
 
 class ProductDetailView(DetailView):
@@ -91,26 +99,6 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             return ProductForm
         raise PermissionDenied
 
-    '''class ProductDeleteView(LoginRequiredMixin, DeleteView):
-    """ Удаление продукта """
-    model = Product
-    template_name = 'catalog/product_confirm_delete.html'
-    success_url = reverse_lazy('catalog:home')
-    pk_url_kwarg = 'product_id'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['product'] = self.get_object()
-        return context'''
-
-    """    def  get_form_class(self):
-        user = self.request.user
-        if user == self.object.owner:
-            return ProductForm
-        if user.has_perm("product.can_unpublish_product") and user.has_perm("product.can_delete_product"):
-            return ProductModeratorForm
-        raise PermissionDenied"""
-
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
@@ -142,3 +130,36 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
 
         # 5. Если можно - пускаем дальше
         return super().dispatch(request, *args, **kwargs)
+
+
+class ProductsByCategoryView(ListView):
+    """
+    Представление для отображения продуктов по категории (через ID)
+    """
+    model = Product
+    template_name = 'catalog/products_by_category.html'
+    context_object_name = 'products'
+    paginate_by = 20
+
+    def get_queryset(self):
+        """
+        Получаем продукты для конкретной категории по ID
+        """
+        category_id = self.kwargs.get('category_id')
+        return get_products_by_category_id(category_id)
+
+    def get_context_data(self, **kwargs):
+        """
+        Добавляем категорию в контекст для отображения в шаблоне
+        """
+        context = super().get_context_data(**kwargs)
+
+        # Получаем объект категории по ID
+        category_id = self.kwargs.get('category_id')
+        category = get_object_or_404(Category, id=category_id)
+        context['category'] = category
+
+        # Получаем все категории для навигации
+        context['all_categories'] = get_all_categories_from_cache()
+
+        return context

@@ -30,14 +30,14 @@
                 </ul>
                 <p class="card-text">{{ article.content|truncatewords:100 }}</p>
                 <a href="/blog/article_detail/{{ article.id }}/"
-                   class="btn btn-lg btn-block btn-outline-primary">Подробнее</a>
+                   class="btn btn-lg btn-block btn-outline-primary w-100 mb-1">Подробнее</a>
                 {% if user == article.owner or perms.blog.can_edit_article or user.is_superuser %}
                 <a href="{% url 'blog:article_edit' article.id %}"
-                   class="btn btn-lg btn-block btn-outline-primary">✏️ Редактировать</a>
+                   class="btn btn-lg btn-block btn-outline-primary w-100 mb-1">✏️ Редактировать</a>
                 {% endif %}
                 {% if user == article.owner or perms.blog.can_edit_article or user.is_superuser %}
                 <a href="{% url 'blog:article_delete' article.id %}"
-                   class="btn btn-lg btn-block btn-outline-primary">🗑️ Удаление</a>
+                   class="btn btn-lg btn-block btn-outline-primary w-100 mb-1">🗑️ Удаление</a>
                 {% endif %}
 
             </div>

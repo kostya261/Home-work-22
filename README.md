@@ -1,7 +1,7 @@
-# 🐍 Домашняя работа 28
+# 🐍 Домашняя работа 29
 
 Домашняя работа по основам Django
-Дополнение к домашнему заданию 28
+Дополнение к домашнему заданию 29
 
 ## 📦 Установка и настройка
 
@@ -22,41 +22,41 @@
 
 ## Что добавлено в сравнении с предыдущим домашним заданием
 
-В базу добавлены группы Administrators и Moderators
-Настроены права доступа.
-Товар и статью в блоге могут удалять только автор, Модератор и Администратор.
-Посторонний пользователь или не автор статьи или продукта не смогут его удалить.
-Так же Навигационные клавиши доступны согласно правам пользователей.
+Реализовано кеширование продукта и низкоуровневое кеширование списка продуктов
+Также реализовано вывод продуктов по категориям
 
 
 ## Структура проекта
 
 HomeWork_21_2/
-├── blog/                         # непосредственно приложение
-│ ├── management/                 #
-│ │ └── commands/                 #
-│ │      └──add_article.py        #
-│ ├── migrations/                 #
-│ └── templates/                  #
-├── catalog/                      # непосредственно приложение
-│ ├── management/                 #
-│ │   └── commands/               #
-│ │      └──add_product.py        #
-│ ├── migrations/                 #
-│ └── templates/                  #
-│     └──catalog/                 #
-│        ├──home.html             # основной шаблон
-│        ├──block_content.html    # основная страница с отображением всех продуктов
-│        ├──add_product.html      # основная тестовая страница
-│        ├──menu.html             # страница меню
-│        ├──product_detail.html   # страница детальной информации о продукте
-│        └──contacts.html         # страница контактов и для отправки post
+├── blog/                              # непосредственно приложение
+│ ├── management/                      #
+│ │ └── commands/                      #
+│ │      └──add_article.py             #
+│ ├── migrations/                      #
+│ └── templates/                       #
+├── catalog/                           # непосредственно приложение
+│ ├── management/                      #
+│ │   └── commands/                    #
+│ │      └──add_product.py             #
+│ ├── migrations/                      #
+│ └── templates/                       #
+│     └──catalog/                      #
+│        ├──home.html                  # основной шаблон
+│        ├──block_content.html         # основная страница с отображением всех продуктов
+│        ├──add_product.html           # основная тестовая страница
+│        ├──menu.html                  # страница меню
+│        ├──products_by_category.html  # страница вывода продуктов по категориям
+│        ├──product_detail.html        # страница детальной информации о продукте
+│        └──contacts.html              # страница контактов и для отправки post
 ├── user_authentication/
 │     └── templates/user_authentication/
 │     ├── register.html # Форма регистрации
 │     ├── profile.html # Просмотр профиля
 │     └── edit_profile.html # Редактирование профиля
 ├── models.py # Кастомная модель User
+├── services.py # Сервисные функции
+├── context_processors.py # Контекстный процессор (работаем с контекстом шаблонов)
 ├── forms.py # Формы: CustomUserCreationForm, CustomUserChangeForm, UserProfileForm
 ├── views.py # Представления (RegisterView, CustomLoginView, profile, edit_profile)
 ├── urls.py # Маршруты с app_name='users'
